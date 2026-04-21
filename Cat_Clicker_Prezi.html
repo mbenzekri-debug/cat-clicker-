@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clicker - Présentation Prezi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8) rotateZ(-5deg);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) rotateZ(0deg);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: scale(0.7) rotateZ(10deg);
+        }
+
+        /* Fond dégradé pour chaque slide */
+        .slide:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .slide:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .slide:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .slide:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .slide:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .slide:nth-child(6) {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .slide:nth-child(7) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .slide-content {
+            text-align: center;
+            color: white;
+            padding: 60px;
+            max-width: 900px;
+            z-index: 2;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: titlePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes titlePop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        p {
+            font-size: 1.4em;
+            line-height: 1.8;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+            background: rgba(255,255,255,0.1);
+            padding: 20px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        button {
+            background: rgba(255,255,255,0.3);
+            border: 2px solid white;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background: rgba(255,255,255,0.5);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+            transition: width 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 5;
+        }
+
+        .keyboard-hint {
+            position: fixed;
+            bottom: 180px;
+            left: 30px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.6);
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Emoji styles */
+        .emoji {
+            font-size: 1.2em;
+            margin: 0 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.1em;
+            }
+            .slide-content {
+                padding: 30px;
+            }
+            .control-panel {
+                flex-direction: column;
+                gap: 10px;
+                bottom: 20px;
+                padding: 15px 20px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide active">
+            <div class="slide-content">
+                <h1><span class="emoji">🐱</span> Cat Clicker <span class="emoji">🎮</span></h1>
+                <p>Un jeu de clic addictif et amusant</p>
+                <p style="font-size: 1.2em; margin-top: 40px; opacity: 0.9;">Cliquez sur les flèches pour naviguer</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">💡</span> Concept du Jeu</h1>
+                <p>Cliquez rapidement sur le chat pour augmenter votre score</p>
+                <p style="font-size: 1.2em; margin-top: 40px;">Plus vous cliquez, plus vos points augmentent!</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">⭐</span> Caractéristiques</h1>
+                <p><span class="emoji">📊</span> 7 niveaux progressifs avec difficulté croissante</p>
+                <p><span class="emoji">🎨</span> 2 thèmes de couleurs personnalisés</p>
+                <p><span class="emoji">🔊</span> Effets sonores immersifs</p>
+                <p><span class="emoji">❤️</span> Système de vies (3 vies)</p>
+                <p><span class="emoji">💾</span> Score persistant</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">🎮</span> Mécaniques de Jeu</h1>
+                <p><span class="emoji">🖱️</span> Clic de souris pour scorer des points</p>
+                <p><span class="emoji">📈</span> Progression automatique entre les niveaux</p>
+                <p><span class="emoji">✨</span> Multiplicateurs de points spéciaux</p>
+                <p><span class="emoji">⏱️</span> Limite de temps par niveau</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">💻</span> Technologie</h1>
+                <p><span class="emoji">⚙️</span> Développé en <strong>C</strong></p>
+                <p><span class="emoji">🎨</span> Graphismes haute performance avec <strong>SDL2</strong></p>
+                <p><span class="emoji">🔊</span> Gestion audio intégrée</p>
+                <p><span class="emoji">🖼️</span> Interface utilisateur personnalisée</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">🎯</span> Objectifs</h1>
+                <p><span class="emoji">🏆</span> Atteindre le niveau 7</p>
+                <p><span class="emoji">📊</span> Maximiser votre score personnel</p>
+                <p><span class="emoji">🎨</span> Compléter tous les thèmes</p>
+                <p><span class="emoji">⚡</span> Battre vos meilleurs scores</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-content">
+                <h1><span class="emoji">🙏</span> Merci!</h1>
+                <p style="font-size: 2em; margin-top: 50px;">Amusez-vous bien avec Cat Clicker!</p>
+                <p style="font-size: 1.3em; margin-top: 60px; opacity: 0.85;">Prêt à devenir un pro du clic? 🚀</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">7</span>
+    </div>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="keyboard-hint">
+        ⌨️ Flèches ou A/D pour naviguer
+    </div>
+
+    <div class="control-panel">
+        <button onclick="previousSlide()">← Précédent</button>
+        <button onclick="nextSlide()">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            document.getElementById('current').textContent = currentSlide + 1;
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+                previousSlide();
+            }
+        });
+
+        // Initialiser
+        updateSlide();
+    </script>
+</body>
+</html>

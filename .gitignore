@@ -1,0 +1,60 @@
+# Compiled Object files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+*.elf
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.cbp
+*.layout
+*.depend
+.DS_Store
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Build directories
+build/
+dist/
+bin/
+obj/
+
+# SDL2
+SDL2/
+sdl2-config
+
+# Game saves & logs
+*.save
+*.log
+scores.dat
+player_data.bin
+
+# macOS
+.DS_Store
+*.dSYM/
+
+# Windows
+Thumbs.db
+*.vcxproj.user
+
+# Temp files
+*.tmp
+*.bak
+*.swp

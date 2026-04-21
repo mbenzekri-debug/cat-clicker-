@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAT CLICKER - Présentation du Jeu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .presentation {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            padding: 60px 40px;
+            min-height: 600px;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            animation: fadeIn 0.5s;
+        }
+        
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .slide h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        .slide-content {
+            font-size: 1.3em;
+            line-height: 1.8;
+        }
+        
+        .slide-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .slide-content li {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .slide-content li:before {
+            content: "🎮";
+            position: absolute;
+            left: 0;
+        }
+        
+        .slide.title {
+            text-align: center;
+            justify-content: center;
+            min-height: 700px;
+        }
+        
+        .slide.title h1 {
+            font-size: 5em;
+            margin-bottom: 40px;
+        }
+        
+        .slide.title p {
+            font-size: 2em;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button:disabled {
+            background: #7f8c8d;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .slide-indicator {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #7f8c8d;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .dot.active {
+            background: #3498db;
+            width: 30px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Title -->
+        <div class="slide title active">
+            <h1>🐱 CAT CLICKER 🐱</h1>
+            <p>Un jeu de clicker passionnant!</p>
+        </div>
+        
+        <!-- Slide 2: Concept -->
+        <div class="slide">
+            <h2>📋 Concept du Jeu</h2>
+            <div class="slide-content">
+                <ul>
+                    <li>Cliquez sur les chats qui apparaissent à l'écran</li>
+                    <li>Gagnez des points pour chaque chat cliqué</li>
+                    <li>Vous avez 3 vies au départ</li>
+                    <li>Progressez à travers plusieurs niveaux</li>
+                    <li>Attrapez le maximum de chats!</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Mechanics -->
+        <div class="slide">
+            <h2>🎮 Mécaniques de Jeu</h2>
+            <div class="slide-content">
+                <ul>
+                    <li>Deux types de chats: colorés et noirs</li>
+                    <li>Les chats apparaissent de plus en plus vite</li>
+                    <li>Arrière-plan avec une maison de nuit</li>
+                    <li>Thème sombre et thème clair disponibles</li>
+                    <li>Effets sonores pour plus d'immersion</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Levels -->
+        <div class="slide">
+            <h2>📊 Système de Niveaux</h2>
+            <div class="slide-content">
+                <ul>
+                    <li>5 chats à attraper par niveau</li>
+                    <li>Augmentation progressive de la difficulté</li>
+                    <li>Vitesse d'apparition qui augmente</li>
+                    <li>Jusqu'à 10 niveaux différents</li>
+                    <li>Défi croissant à chaque niveau</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Audio-Visual -->
+        <div class="slide">
+            <h2>🎨 Fonctionnalités Audio-Visuelles</h2>
+            <div class="slide-content">
+                <ul>
+                    <li>Deux thèmes visuels: sombre et clair</li>
+                    <li>Effet sonore de clic</li>
+                    <li>Bruit de miaou authentique</li>
+                    <li>Son de coup réussi</li>
+                    <li>Son de gameover</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Objectives -->
+        <div class="slide">
+            <h2>🎯 Objectifs de Jouabilité</h2>
+            <div class="slide-content">
+                <ul>
+                    <li>Obtenir le score le plus élevé possible</li>
+                    <li>Améliorer votre vitesse de clic</li>
+                    <li>Progresser à travers tous les niveaux</li>
+                    <li>Relever le défi de la difficulté croissante</li>
+                    <li>Devenir un vrai maître du clicker de chats!</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Conclusion -->
+        <div class="slide title">
+            <h1>Prêt à jouer?</h1>
+            <p>Lancez le jeu et commencez à cliquer!</p>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button onclick="previousSlide()">← Précédent</button>
+            <div class="slide-counter">
+                <span id="current">1</span> / <span id="total">7</span>
+            </div>
+            <div class="slide-indicator" id="dots"></div>
+            <button onclick="nextSlide()">Suivant →</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        // Create dots
+        const dotsContainer = document.getElementById('dots');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            // Update counter
+            document.getElementById('current').textContent = currentSlide + 1;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            
+            // Update button states
+            document.querySelector('button:first-child').disabled = currentSlide === 0;
+            document.querySelector('button:last-child').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

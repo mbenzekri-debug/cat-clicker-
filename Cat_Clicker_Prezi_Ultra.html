@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clicker - Présentation Mignonne ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+        }
+
+        /* Particules animées */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: scale(0.6) translateY(-50px);
+            z-index: 0;
+        }
+
+        /* Backgrounds colorés uniques */
+        .slide:nth-child(1) {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .slide:nth-child(2) {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .slide:nth-child(3) {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .slide:nth-child(4) {
+            background: linear-gradient(135deg, #ffecd2 0%, #ffb3b3 100%);
+        }
+
+        .slide:nth-child(5) {
+            background: linear-gradient(135deg, #b8e6d5 0%, #a8d8d8 100%);
+        }
+
+        .slide:nth-child(6) {
+            background: linear-gradient(135deg, #ffcccc 0%, #ffdddd 100%);
+        }
+
+        .slide:nth-child(7) {
+            background: linear-gradient(135deg, #ffd4a3 0%, #ffb88c 100%);
+        }
+
+        /* Overlay doux */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.05) 100%);
+            pointer-events: none;
+        }
+
+        .slide-content {
+            text-align: center;
+            color: #444;
+            padding: 60px;
+            max-width: 900px;
+            z-index: 2;
+            animation: contentFadeIn 0.8s ease-out 0.2s both;
+            position: relative;
+        }
+
+        @keyframes contentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .illustration {
+            font-size: 150px;
+            margin: 30px 0;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        .illustration.spin {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+
+        .illustration.pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4.5em;
+            margin: 20px 0;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titleZoom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 2px;
+        }
+
+        @keyframes titleZoom {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8em;
+            margin: 15px 0;
+            color: #667eea;
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(102, 126, 234, 0.15);
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #555;
+            margin: 15px 0;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        p:nth-child(n+3) {
+            animation-delay: 0.1s;
+        }
+
+        p:nth-child(n+4) {
+            animation-delay: 0.2s;
+        }
+
+        p:nth-child(n+5) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin: 0 8px;
+            display: inline-block;
+            animation: emojiWiggle 0.5s ease-in-out;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.1));
+        }
+
+        @keyframes emojiWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        .cat-art {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            font-size: 1.2em;
+            color: #ff6b9d;
+            line-height: 1.4;
+            margin: 30px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease-out;
+            background: rgba(255,255,255,0.4);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-box {
+            display: inline-block;
+            background: rgba(255,255,255,0.7);
+            padding: 20px 30px;
+            margin: 10px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            color: #555;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255,255,255,0.9);
+            animation: slideUp 0.6s ease-out;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.9);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        /* Boutons discrets */
+        .nav-button {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border: none;
+            background: rgba(255,255,255,0.15);
+            color: rgba(255,255,255,0.6);
+            font-size: 1.8em;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.9);
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-button:active {
+            transform: scale(0.95);
+        }
+
+        #prevBtn {
+            bottom: 50px;
+            left: 30px;
+        }
+
+        #nextBtn {
+            bottom: 50px;
+            right: 30px;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.3);
+            color: #555;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.4);
+            font-family: 'Fredoka', sans-serif;
+            z-index: 50;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 5;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .keyboard-hint {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.5);
+            background: rgba(0,0,0,0.1);
+            padding: 10px 18px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            font-family: 'Fredoka', sans-serif;
+            z-index: 50;
+            opacity: 0;
+            animation: fadeInOut 4s ease infinite;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+            filter: blur(1px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-40px) translateX(-10px); }
+            75% { transform: translateY(-20px) translateX(10px); }
+        }
+
+        .floating-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; }
+
+        /* Glow effect */
+        .glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(255,107,157,0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(255,107,157,0.6)); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .illustration {
+                font-size: 80px;
+            }
+            .slide-content {
+                padding: 30px;
+            }
+            .nav-button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+            #prevBtn {
+                bottom: 30px;
+                left: 15px;
+            }
+            #nextBtn {
+                bottom: 30px;
+                right: 15px;
+            }
+        }
+
+        /* Responsive pour petits écrans */
+        @media (max-width: 480px) {
+            .slide-counter {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+            .keyboard-hint {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Titre -->
+        <div class="slide active">
+            <div class="floating-icon">🐱</div>
+            <div class="floating-icon">🎮</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">🎯</div>
+            
+            <div class="slide-content">
+                <div class="illustration pulse glow">🐱</div>
+                <h1>Cat Clicker</h1>
+                <h2>Le Jeu de Clic Ultime! 🎮</h2>
+                <p style="font-size: 1.5em; margin-top: 50px; color: #667eea; font-weight: 600;">
+                    Un jeu mignon et addictif pour tous! ✨
+                </p>
+                <p style="font-size: 1.2em; margin-top: 30px; line-height: 1.8; color: #666;">
+                    Bienvenue dans l'univers adorable de Cat Clicker, un jeu de clic développé en C avec SDL2!<br>
+                    Testez vos réflexes, battez vos records et devenez un maître du clic! 🚀
+                </p>
+                <p style="font-size: 1.1em; margin-top: 40px; opacity: 0.8;">
+                    Appuyez sur les flèches pour découvrir l'aventure du petit chat! 👉
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Concept -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration glow">😻</div>
+                <h2>💡 Concept du Jeu</h2>
+                
+                <div class="cat-art">
+    /\_/\
+   ( o.o )
+    > ^ <
+   /|   |\
+  (_|   |_)
+                </div>
+
+                <p><strong style="color: #667eea; font-size: 1.3em;">Cliquez sur le chat adorable pour scorer des points</strong></p>
+                
+                <p style="margin-top: 25px; font-size: 1.15em; line-height: 1.8;">
+                    Cat Clicker est un jeu de clic addictif où vous devez frapper le petit chat aussi rapidement que possible. 
+                    Chaque clic génère des points qui s'accumulent pour vous permettre de progresser dans les niveaux.
+                </p>
+
+                <p style="margin-top: 25px; font-size: 1.15em; line-height: 1.8;">
+                    Plus vous cliquez rapidement et régulièrement, plus vos points augmentent exponentiellement! 
+                    Le chat devient de plus en plus réactif à chaque clic, créant une expérience de jeu dynamique et stimulante.
+                </p>
+
+                <p style="margin-top: 30px; color: #764ba2; font-weight: 600; font-size: 1.2em;">
+                    ⚠️ Attention: Le chat s'énerve avec chaque clic! Gare aux reflex lents! 😹
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Caractéristiques -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration spin glow">⭐</div>
+                <h2>✨ Caractéristiques Adorables</h2>
+                
+                <div style="margin-top: 30px;">
+                    <div class="feature-box">
+                        <span class="emoji">📊</span> <strong>7 Niveaux Progressifs</strong><br>
+                        <span style="font-size: 0.95em;">Chaque niveau augmente la difficulté avec des défis uniques et des multiplicateurs croissants</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">🎨</span> <strong>2 Thèmes Uniques</strong><br>
+                        <span style="font-size: 0.95em;">Thème Rose (mignon) et Thème Bleu Ciel (relaxant) à débloquer</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">🔊</span> <strong>Effets Sonores Immersifs</strong><br>
+                        <span style="font-size: 0.95em;">Sons de clic, bruits du chat, musiques d'ambiance de haute qualité 🎵</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="feature-box">
+                        <span class="emoji">❤️</span> <strong>Système de 3 Vies</strong><br>
+                        <span style="font-size: 0.95em;">Vous avez 3 chances avant Game Over. Chaque niveau vous octroie des bonus de vies</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">💾</span> <strong>Sauvegarde Automatique</strong><br>
+                        <span style="font-size: 0.95em;">Vos meilleurs scores et progression sont sauvegardés automatiquement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mécaniques -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration bounce glow">🎮</div>
+                <h2>🎯 Mécaniques de Jeu Détaillées</h2>
+                
+                <p style="margin-top: 40px; font-size: 1.15em; line-height: 1.8;">
+                    <span class="emoji">🖱️</span> <strong>Système de Clic:</strong> Chaque clic sur le chat génère des points de base qui augmentent avec votre combo
+                </p>
+                
+                <p style="font-size: 1.15em; line-height: 1.8;">
+                    <span class="emoji">📈</span> <strong>Progression Automatique:</strong> Atteignez les objectifs de points pour automatiquement passer au niveau suivant avec des défis plus difficiles
+                </p>
+                
+                <p style="font-size: 1.15em; line-height: 1.8;">
+                    <span class="emoji">✨</span> <strong>Multiplicateurs Spéciaux:</strong> Débloquez des bonus (x1.5, x2, x3) en accomplissant des défis secrets ou en atteignant des jalons de points
+                </p>
+                
+                <p style="font-size: 1.15em; line-height: 1.8;">
+                    <span class="emoji">⏱️</span> <strong>Limite de Temps:</strong> Chaque niveau a un minuteur. Vous devez atteindre votre objectif avant expiration pour progresser
+                </p>
+
+                <p style="margin-top: 30px; background: rgba(255, 107, 157, 0.15); padding: 20px; border-radius: 15px; color: #ff6b9d; font-weight: 600; font-size: 1.1em;">
+                    💥 <strong>Difficulté Croissante:</strong> Plus vous cliquez vite, plus les réactions du chat s'accélèrent! La difficulté augmente exponentiellement à chaque niveau.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technologie -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration pulse glow">💻</div>
+                <h2>⚙️ Technologie et Architecture</h2>
+                
+                <div style="margin-top: 40px;">
+                    <p style="background: rgba(102, 126, 234, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0; font-size: 1.1em; line-height: 1.8;">
+                        <span style="font-size: 1.4em; color: #667eea; font-weight: 700;">C - Langage Principal</span><br>
+                        Développé en C pur pour des performances optimales. Le code utilise des structures de données efficaces pour gérer les états du jeu et les scores en temps réel.
+                    </p>
+                    
+                    <p style="background: rgba(166, 208, 212, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0; font-size: 1.1em; line-height: 1.8;">
+                        <strong style="color: #23a6d5; font-size: 1.2em;">SDL2 - Graphismes Haute Performance</strong><br>
+                        Utilise la Simple DirectMedia Layer 2 pour des rendus fluides à 60 FPS. Gère l'affichage des sprites du chat, les animations, les transitions de niveaux et les effets visuels.
+                    </p>
+                    
+                    <p style="background: rgba(255, 153, 158, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0; font-size: 1.1em; line-height: 1.8;">
+                        <span class="emoji">🔊</span> <strong>Système Audio Intégré</strong><br>
+                        Gestion du son via SDL2_mixer. Inclut des sons de clic réalistes, des bruits du chat réactifs, et une bande sonore immersive pour chaque niveau.
+                    </p>
+                </div>
+
+                <p style="margin-top: 30px; color: #667eea; font-weight: 600; font-size: 1.15em; line-height: 1.8;">
+                    ✨ <strong>Interface Personnalisée:</strong> Développement d'une interface utilisateur complète avec gestion des menus, affichage du score en temps réel, système de progression visuelle, et feedback utilisateur instantané pour chaque interaction.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Objectifs -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration bounce glow">🏆</div>
+                <h2>🎯 Tes Défis et Objectifs!</h2>
+                
+                <div style="margin-top: 40px; text-align: left; display: inline-block;">
+                    <p style="text-align: center; font-size: 1.4em; color: #ff6b9d; font-weight: 700; margin-bottom: 30px;">
+                        🌟 7 Défis Épiques À Relever 🌟
+                    </p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">🏆</span> <strong>Atteindre le Niveau 7:</strong> Progressez à travers tous les niveaux du jeu en dépassant les objectifs de points à chaque étape. C'est le niveau ultime où le chat est au maximum de sa puissance!</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">📊</span> <strong>Maximiser Ton Score:</strong> Sois le meilleur! Accumule le maximum de points possible en jouant intelligemment et en déverrouillant les multiplicateurs spéciaux.</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">🎨</span> <strong>Débloquer les Thèmes:</strong> Découvre les deux thèmes disponibles (Rose mignonesque et Bleu Ciel relaxant) en complétant des défis spécifiques.</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">⚡</span> <strong>Battre Tes Records:</strong> Chaque session crée un nouveau record potentiel. Dépasse-toi et bats tes meilleurs scores!</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">🔓</span> <strong>Débloquer les Bonus Secrets:</strong> Des multiplicateurs cachés, des accélérateurs et des items spéciaux attendent les joueurs les plus performants.</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">🎖️</span> <strong>Accomplir les Défis Spéciaux:</strong> Des missions bonus qui testent vos capacités : cliquez 1000 fois en 30 secondes, atteindre le combo x50, survivre 5 minutes sans erreur...</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;"><span class="emoji">👑</span> <strong>Devenir Maître du Clic:</strong> Le titre ultime! Accomplir TOUS les défis et atteindre le maximum possible. La gloire du jeu vidéo t'attend!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Merci -->
+        <div class="slide">
+            <div class="floating-icon">🐱</div>
+            <div class="floating-icon">🎮</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">💕</div>
+            
+            <div class="slide-content">
+                <div class="illustration pulse glow">🙏</div>
+                <h1 style="background: linear-gradient(135deg, #ff6b9d, #ffa502); -webkit-background-clip: text;">
+                    Merci!
+                </h1>
+                
+                <p style="font-size: 1.5em; margin-top: 50px; color: #ff6b9d; font-weight: 700;">
+                    Amusez-vous bien avec Cat Clicker! 🐱🎮
+                </p>
+                
+                <div class="cat-art">
+    ^___^
+    (o o)
+     (=^=)
+    /|   |\
+   / |   | \
+      ^ ^
+                </div>
+
+                <p style="font-size: 1.15em; margin-top: 40px; color: #667eea; font-weight: 600; line-height: 1.8;">
+                    Cat Clicker n'est pas qu'un simple jeu de clic. C'est une expérience immersive, un test de vos réflexes et de votre persévérance. 
+                    Chaque clic vous rapproche de la victoire, chaque niveau déverrouille de nouveaux défis!
+                </p>
+
+                <p style="font-size: 1.15em; margin-top: 25px; color: #764ba2; line-height: 1.8;">
+                    💕 Le petit chat t'attend et a hâte de te rencontrer! Grâce à tes efforts, tu peux devenir le Champion du Clic, 
+                    le Maître de la Souris, la Légende du Jeu! 💕
+                </p>
+                
+                <p style="font-size: 1.3em; margin-top: 40px; opacity: 0.9; color: #667eea; font-weight: 700;">
+                    Prêt à devenir un <strong>Champion Légendaire</strong>? 🚀✨
+                </p>
+
+                <p style="font-size: 1.1em; margin-top: 30px; opacity: 0.7; color: #555;">
+                    Télécharge et joue maintenant sur ta plateforme favorite! Le chat t'attend... 🐱👀
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">7</span>
+    </div>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="keyboard-hint">
+        ⌨️ Flèches ou A/D pour naviguer
+    </div>
+
+    <!-- Boutons de navigation discrets -->
+    <button id="prevBtn" class="nav-button" onclick="previousSlide()" title="Slide Précédente">❮</button>
+    <button id="nextBtn" class="nav-button" onclick="nextSlide()" title="Slide Suivante">❯</button>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            document.getElementById('current').textContent = currentSlide + 1;
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Clavier - Plus de contrôles
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A' || e.key === 'Backspace') {
+                previousSlide();
+            }
+        });
+
+        // Support souris - click zones
+        document.addEventListener('click', (e) => {
+            const rect = document.querySelector('.presentation-container').getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            
+            // Zone gauche = précédent, zone droite = suivant
+            if (clickX < rect.width * 0.3 && e.target.id !== 'nextBtn' && e.target.id !== 'prevBtn') {
+                previousSlide();
+            } else if (clickX > rect.width * 0.7 && e.target.id !== 'nextBtn' && e.target.id !== 'prevBtn') {
+                nextSlide();
+            }
+        });
+
+        // Initialiser
+        updateSlide();
+    </script>
+</body>
+</html>

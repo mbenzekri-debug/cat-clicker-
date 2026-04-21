@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Clicker - Présentation Mignonne ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.7) translateY(50px);
+            transition: all 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .slide.prev {
+            opacity: 0;
+            transform: scale(0.6) translateY(-50px);
+            z-index: 0;
+        }
+
+        /* Backgrounds colorés uniques */
+        .slide:nth-child(1) {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .slide:nth-child(2) {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .slide:nth-child(3) {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        .slide:nth-child(4) {
+            background: linear-gradient(135deg, #ffecd2 0%, #ffb3b3 100%);
+        }
+
+        .slide:nth-child(5) {
+            background: linear-gradient(135deg, #b8e6d5 0%, #a8d8d8 100%);
+        }
+
+        .slide:nth-child(6) {
+            background: linear-gradient(135deg, #ffcccc 0%, #ffdddd 100%);
+        }
+
+        .slide:nth-child(7) {
+            background: linear-gradient(135deg, #ffd4a3 0%, #ffb88c 100%);
+        }
+
+        .slide-content {
+            text-align: center;
+            color: #444;
+            padding: 60px;
+            max-width: 900px;
+            z-index: 2;
+            animation: contentFadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes contentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .illustration {
+            font-size: 150px;
+            margin: 30px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        .illustration.spin {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotateZ(0deg); }
+            100% { transform: rotateZ(360deg); }
+        }
+
+        .illustration.pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 4.5em;
+            margin: 20px 0;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titleZoom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes titleZoom {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8em;
+            margin: 15px 0;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #555;
+            margin: 15px 0;
+            animation: slideUp 0.6s ease-out both;
+        }
+
+        p:nth-child(n+3) {
+            animation-delay: 0.1s;
+        }
+
+        p:nth-child(n+4) {
+            animation-delay: 0.2s;
+        }
+
+        p:nth-child(n+5) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji {
+            font-size: 1.3em;
+            margin: 0 8px;
+            display: inline-block;
+            animation: emojiWiggle 0.5s ease-in-out;
+        }
+
+        @keyframes emojiWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        .cat-art {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 1.2em;
+            color: #ff6b9d;
+            line-height: 1.4;
+            margin: 30px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-box {
+            display: inline-block;
+            background: rgba(255,255,255,0.6);
+            padding: 20px 30px;
+            margin: 10px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            color: #555;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.8);
+            animation: slideUp 0.6s ease-out;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            background: rgba(255,255,255,0.8);
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(255,255,255,0.2);
+            padding: 20px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255,255,255,0.4);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.3);
+            color: #555;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255,255,255,0.4);
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 5;
+            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
+        }
+
+        .keyboard-hint {
+            position: fixed;
+            bottom: 180px;
+            left: 30px;
+            font-size: 0.95em;
+            color: rgba(100, 100, 100, 0.7);
+            background: rgba(255,255,255,0.3);
+            padding: 12px 18px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0.1;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(-40px) translateX(-10px); }
+            75% { transform: translateY(-20px) translateX(10px); }
+        }
+
+        .floating-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 3s; }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .illustration {
+                font-size: 80px;
+            }
+            .slide-content {
+                padding: 30px;
+            }
+            .control-panel {
+                flex-direction: column;
+                gap: 10px;
+                bottom: 20px;
+                padding: 15px 20px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Titre -->
+        <div class="slide active">
+            <div class="floating-icon">🐱</div>
+            <div class="floating-icon">🎮</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">🎯</div>
+            
+            <div class="slide-content">
+                <div class="illustration pulse">🐱</div>
+                <h1>Cat Clicker</h1>
+                <h2>Le Jeu de Clic Ultime! 🎮</h2>
+                <p style="font-size: 1.5em; margin-top: 50px; color: #667eea; font-weight: 600;">
+                    Un jeu mignon et addictif pour tous! ✨
+                </p>
+                <p style="font-size: 1.1em; margin-top: 40px; opacity: 0.8;">
+                    Cliquez sur les flèches pour découvrir l'aventure du petit chat! 👉
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Concept -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration">😻</div>
+                <h2>💡 Concept du Jeu</h2>
+                
+                <div class="cat-art">
+    /\_/\
+   ( o.o )
+    > ^ <
+   /|   |\
+  (_|   |_)
+                </div>
+
+                <p><strong style="color: #667eea; font-size: 1.3em;">Cliquez sur le chat adorable</strong></p>
+                <p>Plus vous cliquez rapidement, plus vos points augmentent!</p>
+                <p style="margin-top: 30px; color: #764ba2; font-weight: 600;">Attention: Le chat s'énerve avec chaque clic! 😹</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Caractéristiques -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration spin">⭐</div>
+                <h2>✨ Caractéristiques Adorables</h2>
+                
+                <div style="margin-top: 30px;">
+                    <div class="feature-box">
+                        <span class="emoji">📊</span> <strong>7 Niveaux</strong><br>
+                        <span style="font-size: 0.95em;">Progressif & Mignon</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">🎨</span> <strong>2 Thèmes</strong><br>
+                        <span style="font-size: 0.95em;">Rose & Bleu Ciel</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">🔊</span> <strong>Effets Sonores</strong><br>
+                        <span style="font-size: 0.95em;">Sons Mignons! 🎵</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <div class="feature-box">
+                        <span class="emoji">❤️</span> <strong>3 Vies</strong><br>
+                        <span style="font-size: 0.95em;">Système de Vies</span>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <span class="emoji">💾</span> <strong>Sauvegarde</strong><br>
+                        <span style="font-size: 0.95em;">Vos Records!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Mécaniques -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration bounce">🎮</div>
+                <h2>🎯 Mécaniques de Jeu</h2>
+                
+                <p style="margin-top: 40px;">
+                    <span class="emoji">🖱️</span> <strong>Cliquez</strong> sur le chat pour marquer des points
+                </p>
+                
+                <p>
+                    <span class="emoji">📈</span> <strong>Progression</strong> automatique entre les niveaux
+                </p>
+                
+                <p>
+                    <span class="emoji">✨</span> <strong>Multiplicateurs</strong> spéciaux pour plus de points
+                </p>
+                
+                <p>
+                    <span class="emoji">⏱️</span> <strong>Limite de temps</strong> à chaque niveau pour l'adrénaline!
+                </p>
+
+                <p style="margin-top: 40px; background: rgba(255, 107, 157, 0.1); padding: 20px; border-radius: 15px; color: #ff6b9d; font-weight: 600;">
+                    💥 Plus vous cliquez vite, plus la difficulté augmente!
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Technologie -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration pulse">💻</div>
+                <h2>⚙️ Technologie Moderne</h2>
+                
+                <div style="margin-top: 40px;">
+                    <p style="background: rgba(102, 126, 234, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0;">
+                        <span style="font-size: 1.4em; color: #667eea; font-weight: 700;">C</span><br>
+                        Langage puissant et rapide
+                    </p>
+                    
+                    <p style="background: rgba(166, 208, 212, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0;">
+                        <strong style="color: #23a6d5;">SDL2</strong><br>
+                        Pour les graphismes haute performance
+                    </p>
+                    
+                    <p style="background: rgba(255, 153, 158, 0.15); padding: 20px; border-radius: 15px; margin: 15px 0;">
+                        <span class="emoji">🔊</span> <strong>Audio Intégrée</strong><br>
+                        Sons et musiques mignonnes!
+                    </p>
+                </div>
+
+                <p style="margin-top: 30px; color: #667eea; font-weight: 600; font-size: 1.1em;">
+                    Interface personnalisée pour une expérience parfaite ✨
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Objectifs -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="illustration bounce">🏆</div>
+                <h2>🎯 Tes Objectifs!</h2>
+                
+                <div style="margin-top: 40px; text-align: left; display: inline-block;">
+                    <p style="text-align: center; font-size: 1.4em; color: #ff6b9d; font-weight: 700; margin-bottom: 30px;">
+                        🌟 7 Défis Mignons À Relever 🌟
+                    </p>
+                    
+                    <p><span class="emoji">🏆</span> <strong>Atteindre le niveau 7</strong> - Le niveau ultime!</p>
+                    <p><span class="emoji">📊</span> <strong>Maximiser ton score</strong> - Sois le meilleur!</p>
+                    <p><span class="emoji">🎨</span> <strong>Débloquer les thèmes</strong> - Rose et Bleu!</p>
+                    <p><span class="emoji">⚡</span> <strong>Battre tes records</strong> - Dépasse-toi!</p>
+                    <p><span class="emoji">🔓</span> <strong>Débloquer les bonus</strong> - Secrets à découvrir!</p>
+                    <p><span class="emoji">🎖️</span> <strong>Accomplir les défis</strong> - Des missions spéciales!</p>
+                    <p><span class="emoji">👑</span> <strong>Devenir Maître du Clic</strong> - La gloire t'attend!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Merci -->
+        <div class="slide">
+            <div class="floating-icon">🐱</div>
+            <div class="floating-icon">🎮</div>
+            <div class="floating-icon">✨</div>
+            <div class="floating-icon">💕</div>
+            
+            <div class="slide-content">
+                <div class="illustration pulse">🙏</div>
+                <h1 style="background: linear-gradient(135deg, #ff6b9d, #ffa502); -webkit-background-clip: text;">
+                    Merci!
+                </h1>
+                
+                <p style="font-size: 1.6em; margin-top: 50px; color: #ff6b9d; font-weight: 700;">
+                    Amusez-vous bien avec Cat Clicker! 🐱🎮
+                </p>
+                
+                <div class="cat-art">
+    ^___^
+    (o o)
+     (=^=)
+    /|   |\
+   / |   | \
+      ^ ^
+                </div>
+
+                <p style="font-size: 1.3em; margin-top: 40px; color: #667eea; font-weight: 600;">
+                    💕 Le petit chat t'attend! 💕
+                </p>
+                
+                <p style="font-size: 1.1em; margin-top: 30px; opacity: 0.8;">
+                    Prêt à devenir un <strong>Champion du Clic</strong>? 🚀✨
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-counter">
+        <span id="current">1</span> / <span id="total">7</span>
+    </div>
+
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="keyboard-hint">
+        ⌨️ Flèches ou A/D | Espace | Entrée
+    </div>
+
+    <div class="control-panel">
+        <button onclick="previousSlide()">← Précédent</button>
+        <button onclick="nextSlide()">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else if (index < currentSlide) {
+                    slide.classList.add('prev');
+                }
+            });
+
+            document.getElementById('current').textContent = currentSlide + 1;
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Clavier - Plus de contrôles
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D' || e.key === ' ' || e.key === 'Enter') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A' || e.key === 'Backspace') {
+                previousSlide();
+            }
+        });
+
+        // Initialiser
+        updateSlide();
+    </script>
+</body>
+</html>
